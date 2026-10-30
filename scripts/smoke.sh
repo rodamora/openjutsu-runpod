@@ -7,7 +7,7 @@ export OPENJUTSU_PASSWORD="smoke-test-password" SKIP_MODEL_DOWNLOAD=1 COMFYUI_AR
   DATA_DIR="$(mktemp -d)" APP_PORT=3000
 /opt/openjutsu-runpod/start.sh &
 pid=$!
-trap 'kill $pid 2>/dev/null; wait $pid 2>/dev/null' EXIT
+trap 'rc=$?; kill $pid 2>/dev/null; wait $pid 2>/dev/null; exit $rc' EXIT
 
 for _ in $(seq 1 180); do
   code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3000/ || true)

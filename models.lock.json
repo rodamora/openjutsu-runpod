@@ -1,0 +1,47 @@
+{
+  "description": "Weights for Openjutsu character swap (Simple, Advanced, Montage, Check mask, Find people). Paths are relative to the ComfyUI models folder.",
+  "models": [
+    {
+      "path": "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/912b6e38b2092ec4d2e86d24183e0d59ea059d48/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "sha256": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779",
+      "size": 20970379616
+    },
+    {
+      "path": "loras/minimax_h3_DMAD_4step_full_lora_avg_rank_39_bf16.safetensors",
+      "url": "https://huggingface.co/Kijai/MiniMax-H3-experimental/resolve/f5c3b1d5a63e008a691fca1b6096fd57a5307536/loras/minimax_h3_DMAD_4step_full_lora_avg_rank_39_bf16.safetensors",
+      "sha256": "ddfdd94f4c9a0f32bf3649bb8e98ca20db572e4db6bcd9cca546a5b33ea32d11",
+      "size": 366647000
+    },
+    {
+      "path": "text_encoders/qwen3vl_32b_minimax_h3_int4_convrot.safetensors",
+      "url": "https://huggingface.co/Merserk/MiniMax-H3-INT4-ConvRot/resolve/3c167bc916cab6cf3b85b9e3769952757ebb2e5d/qwen3vl_32b_minimax_h3_int4_convrot.safetensors",
+      "sha256": "4389571ab5db4180bcae33d13d07855319530f60a85ab0f1061379401a8ef66c",
+      "size": 14952506624
+    },
+    {
+      "path": "text_encoders/qwen3vl_8b_int8_convrot.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/Qwen3-VL/resolve/02f0d3eefb59528799653d16735818801177ef1f/text_encoders/qwen3vl_8b_int8_convrot.safetensors",
+      "sha256": "8bfd0f6e12abf2d2d697ecc888e5e90b0d6741d6708f05799f53afa560452e8f",
+      "size": 9350798360
+    },
+    {
+      "path": "vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/912b6e38b2092ec4d2e86d24183e0d59ea059d48/vae/minimax_h3_video_vae_int8_convrot.safetensors",
+      "sha256": "52a2c8c73583c86e4f41cdcce3a6ad0ea562987bc0bf3d60a0cef5f5c8e60c0e",
+      "size": 2811065184
+    },
+    {
+      "path": "vae/minimax_h3_audio_vae_fp32.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/912b6e38b2092ec4d2e86d24183e0d59ea059d48/vae/minimax_h3_audio_vae_fp32.safetensors",
+      "sha256": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+      "size": 605254808
+    },
+    {
+      "path": "checkpoints/sam3.1_multiplex_fp16.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/sam3.1/resolve/7bb8374780a725b4353ed31f3a9395c9742b5621/checkpoints/sam3.1_multiplex_fp16.safetensors",
+      "sha256": "9ba99c92703c2e8b4f47de2d34a539bb8e18923049e238b780d70dbe6368eb03",
+      "size": 1745546848
+    }
+  ]
+}

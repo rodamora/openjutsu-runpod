@@ -21,9 +21,16 @@ auth="openjutsu:$OPENJUTSU_PASSWORD"
 code=$(curl -s -o /dev/null -w '%{http_code}' -u "$auth" http://127.0.0.1:3000/)
 [ "$code" = "200" ] || { echo "smoke: expected 200 with login, got $code"; exit 1; }
 
-# The models route reads ComfyUI's model lists, so it proves app -> ComfyUI wiring end to end.
-models=$(curl -sf -u "$auth" -H 'Sec-Fetch-Site: same-origin' http://127.0.0.1:3000/api/models)
+# A browser API call as Runpod's proxy delivers it: internal Host, public name in X-Forwarded-Host.
+# /api/models reads ComfyUI's model lists, so this also proves app -> ComfyUI wiring.
+public=abc123-3000.proxy.runpod.net
+models=$(curl -sf -u "$auth" -H "Host: 100.65.0.1:60000" -H "X-Forwarded-Host: $public" -H "X-Forwarded-Proto: https" \
+  -H "Origin: https://$public" -H 'Sec-Fetch-Site: same-origin' http://127.0.0.1:3000/api/models) \
+  || { echo "smoke: proxied same-origin API call refused"; exit 1; }
 echo "smoke: /api/models -> ${models:0:200}"
+code=$(curl -s -o /dev/null -w '%{http_code}' -u "$auth" -H "X-Forwarded-Host: $public" -H "X-Forwarded-Proto: https" \
+  -H "Origin: https://evil.example" http://127.0.0.1:3000/api/models)
+[ "$code" = "403" ] || { echo "smoke: cross-origin API call got $code, expected 403"; exit 1; }
 # The proxy must answer the v2 API the app's SDK talks to.
 curl -sf -o /dev/null http://127.0.0.1:8189/api/v2/jobs || { echo "smoke: comfy-api-proxy not answering"; exit 1; }
 echo "smoke: ok"

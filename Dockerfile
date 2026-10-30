@@ -80,7 +80,7 @@ RUN uv venv --python /usr/bin/python3.12 /opt/proxy-venv \
   && /opt/proxy-venv/bin/python /opt/openjutsu/patch_proxy.py
 
 COPY models.lock.json /opt/openjutsu-runpod/models.lock.json
-COPY scripts/start.sh scripts/fetch_models.py scripts/check_nodes.py scripts/smoke.sh /opt/openjutsu-runpod/
+COPY scripts/start.sh scripts/front.mjs scripts/fetch_models.py scripts/check_nodes.py scripts/smoke.sh /opt/openjutsu-runpod/
 
 EXPOSE 3000 22
 ENTRYPOINT ["/usr/bin/tini", "-g", "--"]

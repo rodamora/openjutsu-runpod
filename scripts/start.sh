@@ -56,9 +56,12 @@ log comfyui_ready
 /opt/proxy-venv/bin/comfy-api-proxy run --comfyui http://127.0.0.1:8188 --max-upload-mb 500 &
 pids+=($!)
 
+# Next listens on loopback only; front.mjs owns the public port and restores Host for Runpod's proxy.
 cd /opt/openjutsu
 COMFY_BASE_URL=http://127.0.0.1:8189 COMFYUI_URL=http://127.0.0.1:8188 \
-  node node_modules/next/dist/bin/next start --hostname 0.0.0.0 --port "$APP_PORT" &
+  node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3010 &
+pids+=($!)
+APP_PORT="$APP_PORT" NEXT_PORT=3010 node /opt/openjutsu-runpod/front.mjs &
 pids+=($!)
 log app_started "\"port\":$APP_PORT"
 
